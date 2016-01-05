@@ -14,6 +14,11 @@
     - [通过EmbeddedServletContainerCustomizer接口调优Tomcat](spring-boot-tuning-tomcat.md)
     - [选择Spring Boot项目的内嵌容器](choose-web-contrainer.md)
     - [让你的Spring Boot工程支持HTTP和HTTPS](https-support.md)
+- [第四章 编写定制的Spring Boot Starters](chapter-4.md)
+    - [了解Spring Boot的自动配置](aucoconfig-dig.md)
+    - [Spring Boot：定制自己的starter](build-your-own-starter.md)
+    - [配置是否初始化Bean的方法](condition-initialization-bean.md)
+    - [通过@Enable*注解触发Spring Boot配置](enable-annoation.md)
     
 - 关于我们
     - [关于极客学院](about-us.md)
