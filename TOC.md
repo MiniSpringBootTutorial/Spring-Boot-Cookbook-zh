@@ -21,7 +21,13 @@
     - [Spring Boot：定制自己的starter](build-your-own-starter.md)
     - [配置是否初始化Bean的方法](condition-initialization-bean.md)
     - [通过@Enable*注解触发Spring Boot配置](enable-annoation.md)
-    
+- [第五章 Spring Boot应用的测试](chapter-5.md)
+    - [Spring Boot应用的测试——Mockito](test-mockito.md)
+    - [初始化数据库和导入数据](test-populatize-database.md)
+    - [在测试中使用内存数据库](test-memory-database.md)
+    - [利用Mockito模拟DB](test-mockito-db-instance.md)
+    - [在Spring Boot项目中使用Spock框架](test-spock.md)
+
 - 关于我们
     - [关于极客学院](about-us.md)
     - [关于极客学院 Wiki](about-wiki.md)
