@@ -2,6 +2,7 @@
     "name": "Spring Boot Cookbook",
     "introduction": "《Spring Boot Cookbook》的阅读笔记，另有自己的实战经验总结",
     "keywords": "Spring Boot",
+    "description": "Spring Boot作为目前Spring社区最火的开发框架之一，值得每一位Java开发人员学习"
     "path": {
         "readme": "README.md",
         }
