@@ -1,0 +1,4 @@
+- [了解Spring Boot的自动配置](aucoconfig-dig.md)
+- [Spring Boot：定制自己的starter](build-your-own-starter.md)
+- [配置是否初始化Bean的方法](condition-initialization-bean.md)
+- [通过@Enable*注解触发Spring Boot配置](enable-annoation.md)
