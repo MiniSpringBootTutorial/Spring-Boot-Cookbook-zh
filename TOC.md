@@ -34,6 +34,10 @@
     - [Spring Boot应用的健康监控](spring-boot-health-monitor.md)
     - [Spring Boot Admin的使用](spring-boot-admin.md)
     - [通过JMX监控Spring Boot应用](spring-boot-jmx-monitor.md)
+- [第八章 Spring Boot实践总结]
+    - [RESTful by Spring Boot with MySQL](spring-boot-rest-mysql.md)
+    - [Restful: Spring Boot with Mongodb](spring-boot-with-mongodb.md)
+    - [Spring Boot with Redis](spring-boot-with-redis.md)
 - 关于我们
     - [关于极客学院](about-us.md)
     - [关于极客学院 Wiki](about-wiki.md)
