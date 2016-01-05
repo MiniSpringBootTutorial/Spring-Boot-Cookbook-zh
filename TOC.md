@@ -2,6 +2,12 @@
     - [Spring Boot的自动配置、Command-line Runner](spring-boot-autoconfig.md)
     - [Spring Boot with Mysql](spring-boot-with-MySQL.md)
     - [Spring Boot: Data Rest Service](spring-boot-data-rest-service.md)
+- [第二章 配置Web应用](chapter-2.md)
+    - [Spring Boot：定制servlet filters](spring-boot-servlet-filters.md)
+    - [Spring Boot：定制拦截器](spring-boot-interceptors.md)
+    - [Spring Boot：定制HTTP消息转换器](spring-boot-HttpMessageConverters.md)
+    - [Spring Boot：定制PropertyEditors](spring-boot-PropertyEditor.md)
+    - [Spring Boot：定制type Formatters](spring-boot-type-formatters.md)
 
 - 关于我们
     - [关于极客学院](about-us.md)
