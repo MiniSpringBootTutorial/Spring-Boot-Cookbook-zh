@@ -8,7 +8,13 @@
     - [Spring Boot：定制HTTP消息转换器](spring-boot-HttpMessageConverters.md)
     - [Spring Boot：定制PropertyEditors](spring-boot-PropertyEditor.md)
     - [Spring Boot：定制type Formatters](spring-boot-type-formatters.md)
-
+- [第三章 定制Web框架](chapter-3.md)
+    - [Spring Boot：定制URL匹配规则](spring-boot-url-match.md)
+    - [Spring Boot：定制static path mappings](static-path-mapping.md)
+    - [通过EmbeddedServletContainerCustomizer接口调优Tomcat](spring-boot-tuning-tomcat.md)
+    - [选择Spring Boot项目的内嵌容器](choose-web-contrainer.md)
+    - [让你的Spring Boot工程支持HTTP和HTTPS](https-support.md)
+    
 - 关于我们
     - [关于极客学院](about-us.md)
     - [关于极客学院 Wiki](about-wiki.md)
