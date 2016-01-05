@@ -30,7 +30,10 @@
 - [第六章 Spring Boot应用的打包和部署](chapter-6.md)
     - [Spring Boot应用的打包和部署](spring-boot-packaging-and-deploy.md)
     - [Docker with Spring Boot](spring-boot-with-Docker.md)
-
+- [第七章 应用监控和数据可视化](chapter-7.md)
+    - [Spring Boot应用的健康监控](spring-boot-health-monitor.md)
+    - [Spring Boot Admin的使用](spring-boot-admin.md)
+    - [通过JMX监控Spring Boot应用](spring-boot-jmx-monitor.md)
 - 关于我们
     - [关于极客学院](about-us.md)
     - [关于极客学院 Wiki](about-wiki.md)
