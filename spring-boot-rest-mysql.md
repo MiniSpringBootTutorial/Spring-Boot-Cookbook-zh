@@ -1,3 +1,5 @@
+# RESTful by Spring Boot with MySQL
+
 现在的潮流是前端承担越来越多的责任：MVC中的V和C，后端只需要负责提供数据M，但是后端有更重要的任务：高并发、提供各个维度的扩展能力（负载均衡、数据表切分、服务分离）、更清晰的API设计。Spring Boot框架提供的机制便于工程师实现标准的RESTful接口，本文主要讨论如何编写Controller代码，另外还涉及了MySQL的数据库操作，之前我也写过一篇关于Mysql的文章[link](http://www.jianshu.com/p/1b626a6f550e)，但是这篇文章加上了CRUD的操作。
 
 先回顾下之前的文章中我们用到的例子：图书信息管理系统，主要的领域对象有book、author、publisher和reviewer。
@@ -191,8 +193,8 @@ public class BookController {
 
 上述演示的Controller代码还有两个问题：返回值形式不统一；并没有遵循标准的API设计（例如update方法实际上应该由客户端返回更新过的完整对象，这样就可以直接调用save方法），后续，我会参考[RESTful API 设计指南](http://www.ruanyifeng.com/blog/2014/05/restful_api.html)进行学习，对API的设计进行自己的学习总结，读者朋友，你也需要自己实践和学习哦，有问题的可以找我讨论。
 
-
 ## 参考资料
+
 1. [repository中的update方法](http://stackoverflow.com/questions/24420572/update-or-saveorupdate-in-crudrespository-is-there-any-options-available)
 2. [使用spring data创建REST应用](https://crate.io/blog/using-sprint-data-crate-with-your-java-rest-application/)
 3. [遇到的一个错误：at com.fasterxml.jackson.databind.ser.BeanSerializer.serialize](http://stackoverflow.com/questions/23055801/jackson-annotations-not-used-with-spring-boot)

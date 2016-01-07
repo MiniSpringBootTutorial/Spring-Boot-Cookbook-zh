@@ -1,7 +1,9 @@
+# Spring Boot的自动配置、Command-line Runner
+
 接下来关于SpringBoot的一系列文章和例子，都来自《Spring Boot Cookbook》这本书，本文的主要内容是start.spring.io的使用、Spring Boot的自动配置以及CommandRunner的角色和应用场景。
 
-
 ## 1. start.spring.io的使用
+
 首先带你浏览[http://start.spring.io/](http://start.spring.io)，在这个网址中有一些Spring Boot提供的组件，然后会给你展示如何让你的Spring工程变得“Bootiful”，我称之为“Boot化”。
 
 在网站[Spring Initializr](http://start.spring.io/)上填对应的表单，描述Spring Boot项目的主要信息，例如Project Metadata、Dependency等。在Project Dependencies区域，你可以根据应用程序的功能需要选择相应的starter。
@@ -20,6 +22,7 @@ Spring Boot starters可以简化Spring项目的库依赖管理，将某一特定
 - spring-boot-starter-web：该starter包括web应用程序的依赖库。
 
 ### How do
+
 首先我们要通过start.spring.io创建一个图书目录管理程序，它会记录出版图书的记录，包括作者、审阅人、出版社等等。我们将这个项目命名为BookPub，具体的操作步骤如下：
 
  - 点击“Switch to the full version.”，展示完整页面；
@@ -35,7 +38,6 @@ Spring Boot starters可以简化Spring项目的库依赖管理，将某一特定
 利用IDEA导入下载的工程，可以看到pom文件的主体如下如下所示：
 
 ```
-
 	<groupId>com.test</groupId>
 	<artifactId>bookpub</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -85,7 +87,6 @@ Spring Boot starters可以简化Spring项目的库依赖管理，将某一特定
 			</plugin>
 		</plugins>
 	</build>
-
 ```
 
 ## 2. Spring Boot的自动配置
@@ -94,15 +95,17 @@ Spring Boot starters可以简化Spring项目的库依赖管理，将某一特定
 
 我们在pom文件里可以看到，com.h2database这个库起作用的范围是runtime，也就是说，当应用程序启动时，如果Spring Boot在classpath下检测到org.h2.Driver的存在，会自动配置H2数据库连接。现在启动应用程序来观察，以验证我们的想法。打开shell，进入项目文件夹，利用`mvn spring-boot:run`启动应用程序，如下图所示。
 
-![Spring Boot的自动配置](http://7sblhh.com1.z0.glb.clouddn.com/SPRING%20BOOT启动界面.png)
+![Spring Boot的自动配置](images/SPRING-BOOT.png)
 
 可以看到类似*Building JPA container EntityManagerFactory for persistence unit 'default*、*HHH000412: Hibernate Core {4.3.11.Final}*、*HHH000400: Using dialect: org.hibernate.dialect.H2Dialect*这些Info信息；由于我们之前选择了jdbc和jpa等starters,Spring Boot将自动创建JPA容器，并使用Hibernate4.3.11，使用H2Dialect管理H2数据库（内存数据库）。
 
 ## 3. 使用Command-line runners
+
 我们新建一个StartupRunner类，该类实现CommandLineRunner接口，这个接口只有一个函数：`public void run(String... args)`，最重要的是：**这个方法会在应用程序启动后首先被调用**。
 
 ### How do
-- 在src/main/java/org/test/bookpub/下建立StartRunner类，代码如下：
+
+- 在`src/main/java/org/test/bookpub/`下建立StartRunner类，代码如下：
 
 ```
 package com.test.bookpub;
