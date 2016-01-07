@@ -1,8 +1,11 @@
+# 通过EmbeddedServletContainerCustomizer接口调优Tomcat
+
 通过在application.properties设置对应的key-value对，可以配置Spring Boot应用程序的很多特性，例如POST、SSL、MySQL等等。如果需要更加复杂的调优，则可以利用Spring Boot提供的EmbeddedServletContainerCustomizer接口通过编程方式和修改配置信息。
 
 尽管可以通过application.properties设置server.session-timeout属性来配置服务器的会话超时时间，这里我们用EmbeddedServletContainerCustomizer接口修改，来说明该接口的用法。
 
 ## How Do
+
 - 假设我们希望设置会话的超时时间为1分钟。在WebConfiguration类中增加EmbeddedServletContainerCustomizer类型的spring bean，代码如下：
 
 ```
@@ -16,6 +19,7 @@ public EmbeddedServletContainerCustomizer embeddedServletContainerCustomizer() {
     };
 }
 ```
+
 - 在BookController中添加一个*getSessionId(HttpServletRequest request)*函数，直接返回request.getSession().getId()。
 
 ```
@@ -24,6 +28,7 @@ public String getSessionId(HttpServletRequest request) {
     return request.getSession().getId();
 }
 ```
+
 - 通过`mvn spring-boot:run`启动应用
 - 通过postman访问`http://localhost:8080/books/session`，得到的结果如下
 
@@ -32,6 +37,7 @@ public String getSessionId(HttpServletRequest request) {
 1分钟以后再次调用这个接口，则发现返回的session id已经改变。
 
 ## 分析
+
 除了可以使用上面这个写法，对于使用Java 8的开发人员，还可以使用lambda表达式处理，就不需要创建一个EmbeddedServletContainerCustomizer实例了。代码如下：
 
 ```

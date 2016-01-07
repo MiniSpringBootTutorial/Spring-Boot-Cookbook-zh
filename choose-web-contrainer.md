@@ -1,6 +1,9 @@
+# 选择Spring Boot项目的内嵌容器
+
 Spring Boot工程的默认web容器是Tomcat，但是开发人员可以根据需要修改，例如使用Jetty或者Undertow，Spring Boot提供了对应的starters。
 
 ## How Do
+
 - 在pom文件中排除tomcat的starter
 
 ```
@@ -15,6 +18,7 @@ Spring Boot工程的默认web容器是Tomcat，但是开发人员可以根据需
    </exclusions>
 </dependency>
 ```
+
 - 增加Jetty依赖
 
 ```
@@ -23,9 +27,10 @@ Spring Boot工程的默认web容器是Tomcat，但是开发人员可以根据需
    <artifactId>spring-boot-starter-jetty</artifactId>
 </dependency>
 ```
+
 - 通过`mvn spring-boot:run`命令启动，可以看到Jetty已经启动。
 
-![Jetty容器启动](http://upload-images.jianshu.io/upload_images/44770-18e4e74400362556.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Jetty容器启动](images/556.png)
 
 PS：如果您使用的gradle，则可以参考官方文档的做法——[Use Jetty instead of Tomcat](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-embedded-servlet-containers.html)
 

@@ -38,7 +38,4 @@
     - [RESTful by Spring Boot with MySQL](spring-boot-rest-mysql.md)
     - [Restful: Spring Boot with Mongodb](spring-boot-with-mongodb.md)
     - [Spring Boot with Redis](spring-boot-with-redis.md)
-- 关于我们
-    - [关于极客学院](about-us.md)
-    - [关于极客学院 Wiki](about-wiki.md)
-- [联系我们](contact.md)
+

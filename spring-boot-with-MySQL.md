@@ -1,9 +1,11 @@
+# Spring Boot with Mysql
+
 Spring Boot大大简化了持久化任务，几乎不需要写SQL语句，之前我写过一篇关于Mongodb的——[RESTful:Spring Boot with Mongodb](http://duqicauc.github.io/2015/11/29/RESTful-Spring-Boot-with-Mongodb/)。
 
 本文将会演示如何在Spring Boot项目中使用mysql数据库。
 
-
 ## 1.建立数据库连接（database connection）
+
 在上篇文章中我们新建了一个Spring Boot应用程序，添加了jdbc和data-jpa等starters，以及一个h2数据库依赖，这里我们将配置一个H2数据库。
 
 对于H2、HSQL或者Derby这类嵌入型数据库，只要在pom文件中添加对应的依赖就可以，不需要额外的配置。当spring boot在classpath下发现某个数据库依赖存在且在代码中有关于**Datasource Bean**的定义时，就会自动创建一个数据库连接。我们通过修改之前的bookpub程序说明这个问题，需要修改StartupRunner.java文件，代码如下：
@@ -31,6 +33,7 @@ public class StartupRunner implements CommandLineRunner {
 }
 
 ```
+
 启动应用程序，可以看到如下输出：driverClassName=org.h2.Driver;因此，可以证明，Spring Boot根据我们自动织入DataSource的代码，自动创建并初始化了一个H2数据库。不过，这个数据库并没什么用，因为存放其中的数据会在系统停止后就丢失。通过修改配置，我们可以将数据存放在磁盘上。关于H2数据库的配置文件如下：
 
 ```
@@ -38,6 +41,7 @@ spring.datasource.url = jdbc:h2:~/test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
 spring.datasource.username = sa
 spring.datasource.password =
 ```
+
 然后启动应用程序，并检查你的home目录下是否存在test.mv.db文件。通过“~/test”，就告诉Spring Boot，H2数据库的数据会存放在test.mv.db这个文件中。
 
 综上，可以看出，Spring Boot试图通过spring.datasource分组下的一系列配置项来简化用户对数据库的使用，我们经常使用的配置项有：url，username，password以及driver-class-name等等。PS：driverClassName或者driver-class-name都可以，Spring Boot会在内部进行统一处理。
@@ -59,9 +63,11 @@ spring.datasource.password=
 @Autowired
 private JdbcTemplate jdbcTemplate;
 ```
+
 只要定义了上面这个代码，Spring Boot会自动创建一个Datasource对象，然后再创建一个jdbctemplate对象来管理datasource，通过jdbctemplate操作数据库可以减少大量模板代码。如果你对SpringBoot的原理感兴趣，可以在org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration类中查看其具体实现。
 
 ## 2.创建数据仓库服务（data repository service）
+
 连接数据库并直接执行SQL语句这种思路非常古老，早在很多年前就已经出现了ORM（Object Relational Mapping）框架来简化这部分工作，最有名的是Hibernate，但是现在更火的好像是Mybatis。关于spring boot和Mybatis的整合，可以参考：[mybatis-spring-boot](https://github.com/mybatis/mybatis-spring-boot)。我们这里使用Hibernate进行演示。我们将会增加一些实体类，这些实体类决定了数据库的表结构，还要定义一个CrudRepository接口，用于操作数据。
 
 示例程序是一个图书管理系统，显然，数据库中应该具备以下领域对象(domain object)：Book、Author、Reviewrs以及Publisher。首先在src/main/java/org/test/bookpub下建立包domain，然后再在这个包下建立相应的实体类。具体代码列举如下（为了节省空间，省去了getter和setter）：
@@ -175,7 +181,8 @@ public class Publisher {
     }
 }
 ```
-- repository层：创建完实体类，还需要创建BookRepository接口，该接口继承自CrudRepository，这个接口放在src/main/java/com/test/bookpub/repository包中，具体代码如下：
+
+- repository层：创建完实体类，还需要创建BookRepository接口，该接口继承自CrudRepository，这个接口放在`src/main/java/com/test/bookpub/repository`包中，具体代码如下：
 
 ```
 package com.test.bookpub.repository;
@@ -190,6 +197,7 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 }
 
 ```
+
 - 织入BookRepository，最后需要再StartupRunner中定义BookRepository对象，并自动织入。
 
 ```
@@ -242,12 +250,14 @@ public interface CrudRepository<T, ID extends Serializable>
     // … more functionality omitted.
 }
 ```
+
 我们可以添加自定义的接口函数，JPA会提供对应的SQL查询，例如，在本例中的BookRepository中可以增加findBookByIsbn(String isbn)函数，JPA会自动创建对应的SQL查询——根据isbn查询图书，这种将方法名转换为SQL语句的机制十分方便且功能强大，例如你可以增加类似findByNameIgnoringCase(String name)这种复杂查询。
 
 最后，我们利用`mvn spring-boot:run`运行应用程序，观察下Hibernate是如何建立数据库连接，如何检测数据表是否存在以及如何自动创建表的过程。
 
-![spring with mysql](http://upload-images.jianshu.io/upload_images/44770-5d281e131d20abdc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![spring with mysql](images/abdc.png)
 	
 
 ## 3. 参考资料
+
 - [http://docs.spring.io/spring-data/data-commons/docs/current/reference/html/](http://docs.spring.io/spring-data/data-commons/docs/current/reference/html/)

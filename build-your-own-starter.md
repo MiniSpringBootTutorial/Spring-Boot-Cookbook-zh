@@ -1,8 +1,11 @@
+# Spring Boot：定制自己的starter
+
 在学习Spring Boot的过程中，接触最多的就是starter。可以认为starter是一种服务——使得使用某个功能的开发者不需要关注各种依赖库的处理，不需要具体的配置信息，由Spring Boot自动通过classpath路径下的类发现需要的Bean，并织入bean。举个例子，*spring-boot-starter-jdbc*这个starter的存在，使得我们只需要在BookPubApplication下用`@Autowired`引入DataSource的bean就可以，Spring Boot会自动创建DataSource的实例。
 
 这里我们会用一个不太规范的starter展示Spring Boot的自动配置的运行原理。[Spring Boot的自动配置、Command-line Runner](http://www.jianshu.com/p/846bb2d26ff8)一文中曾利用StartupRunner类在程序运行启动后首先查询数据库中书的数目，现在换个需求：*在系统启动后打印各个实体的数量*。
 
 ## How Do
+
 - 新建一个模块*db-count-starter*，然后修改db-count-starter模块下的pom文件，增加对应的库。
 
 ```
@@ -18,6 +21,7 @@
         <version>1.9.3.RELEASE</version>
     </dependency></dependencies>
 ```
+
 - 新建包结构*com/test/bookpubstarter/dbcount*，然后新建DbCountRunner类，实现CommandLineRunner接口，在run方法中输出每个实体的数量。
 
 ```
@@ -55,6 +59,7 @@ public class DbCountRunner implements CommandLineRunner {
     }
 }
 ```
+
 - 增加自动配置文件*DbCountAutoConfiguration*
 
 ```
@@ -72,6 +77,7 @@ public class DbCountAutoConfiguration {
     }
 }
 ```
+
 - 在src/main/resources目录下新建META-INF文件夹，然后新建*spring.factories*文件，这个文件用于告诉Spring Boot去找指定的自动配置文件，因此它的内容是
 
 ```
@@ -91,18 +97,21 @@ com.test.bookpubstarter.dbcount.DbCountAutoConfiguration
 
 - 把StartupRunner相关的注释掉，然后在main函数上右键*Run BookPubApplication.main(...)*，可以看出我们编写的starter被主程序使用了。
 
-![自己的starter简单演示.png](http://upload-images.jianshu.io/upload_images/44770-769af789366087c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![自己的starter简单演示.png](images/c0.png)
 
 ## 分析
+
 正规的starter是一个独立的工程，然后在maven中新仓库注册发布，其他开发人员就可以使用你的starter了。
 
 常见的starter会包括下面几个方面的内容：
+
 1. 自动配置文件，根据classpath是否存在指定的类来决定是否要执行该功能的自动配置。
 2. spring.factories，非常重要，指导Spring Boot找到指定的自动配置文件。
 3. endpoint：可以理解为一个admin，包含对服务的描述、界面、交互（业务信息的查询）
 4. health indicator：该starter提供的服务的健康指标
 
 在应用程序启动过程中，Spring Boot使用*SpringFactoriesLoader*类加载器查找*org.springframework.boot.autoconfigure.EnableAutoConfiguration*关键字对应的Java配置文件。Spring Boot会遍历在各个jar包种META-INF目录下的*spring.factories*文件，构建成一个配置文件链表。除了*EnableAutoConfiguration*关键字对应的配置文件，还有其他类型的配置文件：
+
 - org.springframework.context.ApplicationContextInitializer
 - org.springframework.context.ApplicationListener 
 - org.springframework.boot.SpringApplicationRunListener 
@@ -112,8 +121,8 @@ com.test.bookpubstarter.dbcount.DbCountAutoConfiguration
 
 Spring Boot的starter在编译时不需要依赖Spring Boot的库。这个例子中依赖spring boot并不是因为自动配置要用spring boot，而仅仅是因为需要实现*CommandLineRunner*接口。
 
-
 ## 两个需要注意的点
+
 1. *@ConditionalOnMissingBean*的作用是：只有对应的ban在系统中都没有被创建，它修饰的初始化代码块才会执行，**用户自己手动创建的bean优先**；
 
 2. Spring Boot starter如何找到自动配置文件（xxxxAutoConfiguration之类的文件）？

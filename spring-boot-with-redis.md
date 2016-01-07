@@ -1,4 +1,7 @@
+# Spring Boot with Redis
+
 ## Spring Boot简介
+
 Spring Boot是为了简化Spring开发而生，从Spring 3.x开始，Spring社区的发展方向就是弱化xml配置文件而加大注解的戏份。最近召开的SpringOne2GX2015大会上显示：Spring Boot已经是Spring社区中增长最迅速的框架，前三名是：Spring Framework，Spring Boot和Spring Security，这个应该是未来的趋势。
 
 我学习Spring Boot，是因为通过cli工具，spring boot开始往flask（python）、express(nodejs)等web框架发展和靠近，并且Spring Boot几乎不需要写xml配置文件。感兴趣的同学可以根据[spring boot quick start](http://projects.spring.io/spring-boot/#quick-start)这篇文章中的例子尝试下。
@@ -6,6 +9,7 @@ Spring Boot是为了简化Spring开发而生，从Spring 3.x开始，Spring社�
 学习新的技术最佳途径是看官方文档，现在Spring boot的release版本是1.3.0-RELEASE，相应的参考文档是[Spring Boot Reference Guide(1.3.0-REALEASE)](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)，如果有绝对英文比较吃力的同学，可以参考中文版[Spring Boot参考指南](https://www.gitbook.com/book/qbgbook/spring-boot-reference-guide-zh/details)。在前段时间阅读一篇技术文章，介绍如何阅读ios技术文档，我从中也有所收获，那就是我们应该重视spring.io上的guides部分——[Getting Started Guides](http://spring.io/guides)，这部分都是一些针对特定问题的demo，值得学习。
 
 ## Spring Boot的项目结构
+
 ```
 com
  +- example
@@ -25,12 +29,16 @@ com
 如上所示，Spring boot项目的结构划分为web->service->domain，其中domain文件夹可类比与业务模型和数据存储，即xxxBean和Dao层；service层是业务逻辑层，web是控制器。比较特别的是，这种类型的项目有自己的入口，即主类，一般命名为Application.java。Application.java不仅提供入口功能，还提供一些底层服务，例如缓存、项目配置等等。
 
 ## 例子介绍
+
 本文的例子是取自我的side project之中，日报（report）的查询，试图利用Redis作为缓存，优化查询效率。
 
 ## 知识点解析
+
 ### 1. 自定义配置
+
 Spring Boot允许外化配置，这样你可以在不同的环境下使用相同的代码。你可以使用properties文件、yaml文件，环境变量和命令行参数来外化配置。使用@Value注解，可以直接将属性值注入到你的beans中。
 Spring Boot使用一个非常特别的PropertySource来允许对值进行合理的覆盖，按照优先考虑的顺序排位如下：
+
 ```
 1. 命令行参数
 2. 来自java:comp/env的JNDI属性
@@ -42,11 +50,13 @@ Spring Boot使用一个非常特别的PropertySource来允许对值进行合理�
 8. 在@Configuration类上的@PropertySource注解
 9. 默认属性（使用SpringApplication.setDefaultProperties指定）
 ```
+
 **使用场景**：可以将一个application.properties打包在Jar内，用来提供一个合理的默认name值；当运行在生产环境时，可以在Jar外提供一个application.properties文件来覆盖name属性；对于一次性的测试，可以使用特病的命令行开关启动，而不需要重复打包jar包。
 
 具体的例子操作过程如下：
 
 - 新建配置文件（application.properties）
+
 ```
 spring.redis.database=0
 spring.redis.host=localhost
@@ -60,6 +70,7 @@ spring.redis.sentinel.master= # Name of Redis server.
 spring.redis.sentinel.nodes= # Comma-separated list of host:port pairs.
 spring.redis.timeout=0
 ```
+
  - 使用@PropertySource引入配置文件
 
 ```
@@ -70,6 +81,7 @@ public class CacheConfig extends CachingConfigurerSupport {
 	......
 }
 ```
+
  - 使用@Value引用属性值
 
 ```
@@ -87,8 +99,8 @@ public class CacheConfig extends CachingConfigurerSupport {
 }
 ```
 
-
 ### 2. redis使用
+
 - 添加pom配置
 
 ```
@@ -97,6 +109,7 @@ public class CacheConfig extends CachingConfigurerSupport {
     <artifactId>spring-boot-starter-redis</artifactId>
 </dependency>
 ```
+
 - 编写CacheConfig
 
 ```
@@ -157,6 +170,7 @@ public class CacheConfig extends CachingConfigurerSupport {
     }
 }
 ```
+
 - 启动缓存，使用@Cacheable注解在需要缓存的接口上即可
 
 ```
@@ -169,6 +183,7 @@ public class ReportService {
     }
 }
 ```
+
 - 测试验证
 	- 运行方法如下：
 		- mvn clean package
@@ -179,7 +194,8 @@ public class ReportService {
 	- 验证缓存失效（10s+后执行）：
 		- 访问：http://localhost:8080/report/test2
 
-##参考资料
+## 参考资料
+
 1. [spring boot quick start](http://projects.spring.io/spring-boot/#quick-start)
 2. [Spring Boot参考指南](https://www.gitbook.com/book/qbgbook/spring-boot-reference-guide-zh/details)
 3. [Spring Boot Reference Guide(1.3.0-REALEASE)](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
