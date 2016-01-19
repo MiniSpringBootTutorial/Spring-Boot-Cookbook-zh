@@ -23,9 +23,9 @@
 - 在resources目录下新建*import.sql*文件(注意，SQL语句中指定的字段要与Hibernate自动生成的表的字段相同)，该文件的内容如下：
 
 ```
-INSERT INTO author (id, first_name, last_name) VALUES (1, "Alex", "Antonov");
-INSERT INTO publisher (id, name) VALUES (1, "Packt");
-INSERT INTO book (isbn, title, author, publisher) VALUES ("9876-5432-1111", "Spring Boot Recipes", 1,1);
+INSERT INTO author (id, first_name, last_name) VALUES (1, 'Alex', 'Antonov');
+INSERT INTO publisher (id, name) VALUES (1, 'Packt');
+INSERT INTO book (isbn, title, author, publisher) VALUES ('9876-5432-1111', 'Spring Boot Recipes', 1,1);
 ```
 - 现在运行测试用例，发现可以通过;
 - 第二种方法是获取Spring JDBC的支持，需要我们提供schema.sql和data.sql文件。现在可以将import.sql重命名为data.sql，然后再创建新的文件schema.sql。在删除数据表时，需要考虑依赖关系，例如表A依赖表B，则先删除表B。创建数据库关系的内容如下：
