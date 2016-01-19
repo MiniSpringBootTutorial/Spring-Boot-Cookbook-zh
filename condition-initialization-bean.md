@@ -1,6 +1,6 @@
 # 配置是否初始化Bean的方法
 
-在[Spring Boot：定制自己的starter](http://www.jianshu.com/p/85460c1d835a)一文提到，只要DbCountRunner这个类在classpath路径下，Spring Boot会自动创建对应的spring bean并添加到应用程序上下文中。
+在[Spring Boot：定制自己的starter](build-your-own-starter.md)一文提到，只要DbCountRunner这个类在classpath路径下，Spring Boot会自动创建对应的spring bean并添加到应用程序上下文中。
 
 在文章最后提到，Spring Boot的自动配置机制依靠*@ConditionalOnMissingBean*注解判断是否执行初始化代码，即如果用户已经创建了bean，则相关的初始化代码不再执行。
 
