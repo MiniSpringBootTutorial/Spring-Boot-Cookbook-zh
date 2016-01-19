@@ -1,6 +1,6 @@
 # 在Spring Boot项目中使用Spock框架
 
-Spock框架是基于Groovy语言的测试框架，Groovy与Java具备良好的互操作性，因此可以在Spring Boot项目中使用该框架写优雅、高效以及DSL化的测试用例。Spock通过*@RunWith*注解与JUnit框架协同使用，另外，Spock也可以和Mockito([Spring Boot应用的测试——Mockito](http://www.jianshu.com/p/972cd6b93206))协同使用。
+Spock框架是基于Groovy语言的测试框架，Groovy与Java具备良好的互操作性，因此可以在Spring Boot项目中使用该框架写优雅、高效以及DSL化的测试用例。Spock通过*@RunWith*注解与JUnit框架协同使用，另外，Spock也可以和Mockito([Spring Boot应用的测试——Mockito](test-mockito.md))协同使用。
 
 在这个小节中我们会利用Spock、Mockito一起编写一些测试用例（包括对Controller的测试和对Repository的测试），感受下Spock的使用。
 
