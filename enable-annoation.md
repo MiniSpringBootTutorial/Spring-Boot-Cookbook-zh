@@ -1,6 +1,6 @@
 # 通过@Enable*注解触发Spring Boot配置
 
-在[Spring Boot：定制自己的starter](http://www.jianshu.com/p/85460c1d835a)一文最后提到，触发Spring Boot的配置过程有两种方法：
+在[Spring Boot：定制自己的starter](build-your-own-starter.md)一文最后提到，触发Spring Boot的配置过程有两种方法：
 >1. spring.factories：由*Spring Boot触发*探测classpath目录下的类，进行自动配置；
 2.  @Enable*：有时需要由starter的*用户触发*查找自动配置文件的过程。
 
