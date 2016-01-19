@@ -30,7 +30,7 @@ public class WebApplication {
 
 ## 分析
 
-项目的主类——BookPubApplication，可以看到由@SpringBootApplication注解修饰，这包含了@ComponentScan、@Configuration和@EnableAutoConfiguration注解。在[之前的文章](http://www.jianshu.com/p/846bb2d26ff8)中曾对这个三个注解做详细解释，@ComponentScan让Spring Boot扫描到WebConfiguration类并把它加入到程序上下文中，因此，我们在WebApplication中定义的Bean就跟在BookPubApplication中定义一样。
+项目的主类——BookPubApplication，可以看到由@SpringBootApplication注解修饰，这包含了@ComponentScan、@Configuration和@EnableAutoConfiguration注解。在[Spring Boot的自动配置、Command-line Runner](spring-boot-autoconfig.md)一文中曾对这个三个注解做详细解释，@ComponentScan让Spring Boot扫描到WebConfiguration类并把它加入到程序上下文中，因此，我们在WebApplication中定义的Bean就跟在BookPubApplication中定义一样。
 
 方法`@Bean    public RemoteIpFilter remoteIpFilter() { ... }`返回一个RemoteIPFilter类的spring bean。当Spring Boot监测到有javax.servlet.Filter的bean时就会自动加入过滤器调用链。从上图中还可以看到，该Spring Boot项目一次加入了这几个过滤器：characterEncodingFilter（用于处理编码问题）、hiddenHttpMethodFilter（隐藏HTTP函数）、httpPutFormContentFilter、requestContextFilter（请求上下文），以及我们刚才自定义的RemoteIPFilter。
 
