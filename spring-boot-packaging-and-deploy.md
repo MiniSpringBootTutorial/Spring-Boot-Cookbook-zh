@@ -26,4 +26,4 @@ Spring Boot开发的应用可以打包为单独的JAR包，然后通过`java -ja
 
 ## 二、创建Docker镜像
 
-可以参考我之前写的一篇文章：[Docker with Spring Boot](http://www.jianshu.com/p/6a1b06ab8734)
+可以参考我之前写的一篇文章：[Docker with Spring Boot](spring-boot-with-Docker.md)
