@@ -1,6 +1,6 @@
 # Spring Boot: Data Rest Service
 
-在文章[RESTful by Spring Boot with MySQL](http://www.jianshu.com/p/2537313ce5f1)通过在Controller中引入BookRepository来对外提供REST API。Spring Boot还可以通过`spring-boot-starter-data-rest`来对外提供REST API，可以免于编写对应的Controller，且具备分页和排序的功能。
+在文章[RESTful by Spring Boot with MySQL](spring-boot-rest-mysql.md)通过在Controller中引入BookRepository来对外提供REST API。Spring Boot还可以通过`spring-boot-starter-data-rest`来对外提供REST API，可以免于编写对应的Controller，且具备分页和排序的功能。
 
 ## 实践
 
