@@ -9,6 +9,7 @@ Spring Boot的自动配置给开发者带来了很大的便利，当开发人员
 - Spring Boot启动时将自动配置的信息通过DEBUG级别的日志打印到控制台。可以通过设置环境变量（DEBUG）或者程序属性（--debug）设置程序的日志输出级别。
 - 在项目目录下运行`DEBUG=true mvn spring-boot:run`启动应用程序；
 - 在后台可以看到DEBUG级别的日志输出，在启动日志的最后，可以看到类似**AUTO-CONFIGURATION REPORT**的字样。
+
 ![Positive matches](images/cd.png)
 
 ![Negative matches](images/7.png)
