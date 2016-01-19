@@ -1,6 +1,6 @@
 # Spring Boot：定制PropertyEditors
 
-在[Spring Boot: 定制HTTP消息转换器](http://www.jianshu.com/p/ffe56d9553fd)一文中我们学习了如何配置消息转换器用于HTTP请求和响应数据，实际上，在一次请求的完成过程中还发生了其他的转换，我们这次关注将参数转换成多种类型的对象，如：字符串转换成Date对象或字符串转换成Integer对象。
+在[Spring Boot: 定制HTTP消息转换器](spring-boot-HttpMessageConverters.md)一文中我们学习了如何配置消息转换器用于HTTP请求和响应数据，实际上，在一次请求的完成过程中还发生了其他的转换，我们这次关注将参数转换成多种类型的对象，如：字符串转换成Date对象或字符串转换成Integer对象。
 
 在编写控制器中的action方法时，Spring允许我们使用具体的数据类型定义函数签名，这是通过*PropertyEditor*实现的。*PropertyEditor*本来是JDK提供的API，用于将文本值转换成给定的类型，结果Spring的开发人员发现它恰好满足Spring的需求——将URL参数转换成函数的参数类型。
 
