@@ -1,6 +1,6 @@
 # 通过JMX监控Spring Boot应用
 
-在[Spring Boot应用的健康监控](http://www.jianshu.com/p/734519d3c383)一文中，我们通过Spring Boot Actuator对外暴露应用的监控信息，除了使用HTTP获取JSON格式 的数据之外，还可以通过JMX监控应用，Spring Boot也提供了对JMX监控的支持。JMX监控对外暴露的信息相同，不过是使用MBeans容器将应用数据封装管理。
+在[Spring Boot应用的健康监控](spring-boot-health-monitor.md)一文中，我们通过Spring Boot Actuator对外暴露应用的监控信息，除了使用HTTP获取JSON格式 的数据之外，还可以通过JMX监控应用，Spring Boot也提供了对JMX监控的支持。JMX监控对外暴露的信息相同，不过是使用MBeans容器将应用数据封装管理。
 
 接下来我们看下如何利用JMX获取应用状态信息，以及如何使用Jolokia JMX库对外暴露MBeans的HTTP访问URL。
 
