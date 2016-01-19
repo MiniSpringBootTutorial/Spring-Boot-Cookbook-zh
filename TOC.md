@@ -2,7 +2,7 @@
 
 - [第一章 Spring Boot入门](chapter-1.md)
     - [Spring Boot的自动配置、Command-line Runner](spring-boot-autoconfig.md)
-    - [Spring Boot with Mysql](spring-boot-with-MySQL.md)
+    - [RESTful by Spring Boot with MySQL](spring-boot-rest-mysql.md)
     - [Spring Boot: Data Rest Service](spring-boot-data-rest-service.md)
 - [第二章 配置Web应用](chapter-2.md)
     - [Spring Boot：定制servlet filters](spring-boot-servlet-filters.md)
@@ -35,7 +35,7 @@
     - [Spring Boot Admin的使用](spring-boot-admin.md)
     - [通过JMX监控Spring Boot应用](spring-boot-jmx-monitor.md)
 - [第八章 Spring Boot实践总结]
-    - [RESTful by Spring Boot with MySQL](spring-boot-rest-mysql.md)
+    - [Spring Boot with Mysql](spring-boot-with-MySQL.md)
     - [Restful: Spring Boot with Mongodb](spring-boot-with-mongodb.md)
     - [Spring Boot with Redis](spring-boot-with-redis.md)
 
