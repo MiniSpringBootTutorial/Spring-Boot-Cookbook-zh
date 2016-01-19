@@ -1,6 +1,6 @@
 # Spring Boot：定制static path mappings
 
-在[Spring Boot：定制URL匹配规则](http://www.jianshu.com/p/02bff08fcced)一文中我们展示了如何调整URL请求匹配到对应的控制器方法的规则。类似得，也可以控制应用程序对静态文件（前提是被打包进部署包）的处理。
+在[Spring Boot：定制URL匹配规则](spring-boot-url-match.md)一文中我们展示了如何调整URL请求匹配到对应的控制器方法的规则。类似得，也可以控制应用程序对静态文件（前提是被打包进部署包）的处理。
 
 假设我们需要通过URL`http://localhost:8080/internal/application.properties`对外暴露当前程序的配置。
 
