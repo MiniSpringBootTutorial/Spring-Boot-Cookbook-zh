@@ -2,7 +2,7 @@
 
 在学习Spring Boot的过程中，接触最多的就是starter。可以认为starter是一种服务——使得使用某个功能的开发者不需要关注各种依赖库的处理，不需要具体的配置信息，由Spring Boot自动通过classpath路径下的类发现需要的Bean，并织入bean。举个例子，*spring-boot-starter-jdbc*这个starter的存在，使得我们只需要在BookPubApplication下用`@Autowired`引入DataSource的bean就可以，Spring Boot会自动创建DataSource的实例。
 
-这里我们会用一个不太规范的starter展示Spring Boot的自动配置的运行原理。[Spring Boot的自动配置、Command-line Runner](http://www.jianshu.com/p/846bb2d26ff8)一文中曾利用StartupRunner类在程序运行启动后首先查询数据库中书的数目，现在换个需求：*在系统启动后打印各个实体的数量*。
+这里我们会用一个不太规范的starter展示Spring Boot的自动配置的运行原理。[Spring Boot的自动配置、Command-line Runner](spring-boot-autoconfig.md)一文中曾利用StartupRunner类在程序运行启动后首先查询数据库中书的数目，现在换个需求：*在系统启动后打印各个实体的数量*。
 
 ## How Do
 
