@@ -1,6 +1,6 @@
 # Spring Boot with Mysql
 
-Spring Boot大大简化了持久化任务，几乎不需要写SQL语句，之前我写过一篇关于Mongodb的——[RESTful:Spring Boot with Mongodb](http://duqicauc.github.io/2015/11/29/RESTful-Spring-Boot-with-Mongodb/)。
+Spring Boot大大简化了持久化任务，几乎不需要写SQL语句，之前我写过一篇关于Mongodb的——[RESTful:Spring Boot with Mongodb](spring-boot-rest-mysql.md)。
 
 本文将会演示如何在Spring Boot项目中使用mysql数据库。
 
@@ -57,7 +57,15 @@ spring.datasource.password=
 
 如果希望通过Hibernate依靠Entity类自动创建数据库和数据表，则还需要加上配置项——`spring.jpa.hibernate.ddl-auto=create-drop`。PS：在生产环境中不要使用create-drop，这样会在程序启动时先删除旧的，再自动创建新的，最好使用update；还可以通过设置`spring.jpa.show-sql = true`来显示自动创建表的SQL语句，通过`spring.jpa.database = MYSQL`指定具体的数据，如果不明确指定Spring boot会根据classpath中的依赖项自动配置。
 
-在Spring项目中，如果数据量比较简单，我们可以考虑使用JdbcTemplate，而不是直接定义Datasource，配置jdbc的代码如下：
+要使用MySQL，需要引入对应的connector，因此，首先在pom文件中添加如下依赖：
+```
+<dependency>
+   <groupId>mysql</groupId>
+   <artifactId>mysql-connector-java</artifactId>
+</dependency>
+```
+
+在Spring项目中，如果数据比较简单，我们可以考虑使用JdbcTemplate，而不是直接定义Datasource，配置jdbc的代码如下：
 
 ```
 @Autowired
